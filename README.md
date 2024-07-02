@@ -31,14 +31,16 @@ July 1 Rough Task Division:
   - Main contributors: XXX
 - Core model
   - Create RAG + NLP pipeline
-  - Main contributors: XXX
-- Model evaluation
+  - Main contributors: ...., Taj
+- Model evaluation & Fine-tuning
   - Evaluate model for various tasks
-  - Main contributors: XXX
+  - Main contributors: Taj, ... 
 - Deployment
   - web deployment
-  - Main contributors: XXX
+  - Main contributors: ...., Taj
 - Exploratory Tasks
   - multimodel NLP
   - customized transformer architecture (poor man's version of chatGPT)
   - create a Transformer-GAN for plagarism detection.
+  - Main contributors: ..., Taj 
+
