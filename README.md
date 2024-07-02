@@ -28,19 +28,19 @@ July 1 Rough Task Division:
 - Data preprocessing
   - Getting arXiv metadata and paper content (text, figure) from the past year, create a RAG vector database (word embedding)
   - For a figure,a separate task to translate it to a texual description is needed to create a word embedding
-  - Main contributors: XXX, Ketan
+  - Main contributors: Xiaoyu,..., Ketan
 - Core model
   - Create RAG + NLP pipeline
-  - Main contributors: Ketan,..., Taj
+  - Main contributors: Ketan, Xiaoyu,..., Taj
 - Model evaluation & Fine-tuning
   - Evaluate model for various tasks
-  - Main contributors: Taj, Ketan... 
+  - Main contributors: Taj, Ketan, Xiaoyu, ... 
 - Deployment
   - web deployment
-  - Main contributors: ...., Taj, Ketan
+  - Main contributors: ..., Taj, Ketan, Xiaoyu
 - Exploratory Tasks
   - multimodel NLP
   - customized transformer architecture (poor man's version of chatGPT)
   - create a Transformer-GAN for plagarism detection.
-  - Main contributors: ..., Taj, Ketan 
+  - Main contributors: ..., Xiaoyu, ..., Taj, Ketan 
 
