@@ -34,7 +34,7 @@ July 1 Rough Task Division:
   - Main contributors: Ketan, Xiaoyu,..., Taj
 - Model evaluation & Fine-tuning
   - Evaluate model for various tasks
-  - Main contributors: Taj, Ketan, Xiaoyu, ... 
+  - Main contributors: Taj, Ketan, Xiaoyu, Tantrik 
 - Deployment
   - web deployment
   - Main contributors: ..., Taj, Ketan, Xiaoyu
@@ -42,5 +42,5 @@ July 1 Rough Task Division:
   - multimodel NLP
   - customized transformer architecture (poor man's version of chatGPT)
   - create a Transformer-GAN for plagarism detection.
-  - Main contributors: ..., Xiaoyu, ..., Taj, Ketan 
+  - Main contributors: ..., Xiaoyu, ..., Taj, Ketan, Tantrik
 
