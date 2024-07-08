@@ -87,6 +87,9 @@ The Chainlit documentation provides detailed guides for setting up the local dev
 ## TODO
 1. Decide on whether to precompute all the embeddings vs compute embeddings for each query.
 
+## IDEAS
+1. Arxiv search is not that good. Maybe we can tweak it.
+
 ## Links
 1. [experience training a local llm](https://peterfalkingham.com/2024/04/26/my-experience-training-a-local-llm-ai-chatbot-on-local-data/)
 2. [Towards DataScience article](https://towardsdatascience.com/building-an-observable-arxiv-rag-chatbot-with-langchain-chainlit-and-literal-ai-9c345fcd1cd8)
