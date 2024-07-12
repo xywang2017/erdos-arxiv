@@ -31,7 +31,7 @@ July 1 Rough Task Division:
   - Main contributors: Xiaoyu,..., Ketan
 - Core model
   - Create RAG + NLP pipeline
-  - Main contributors: Ketan, Xiaoyu,..., Taj
+  - Main contributors: Ketan, Xiaoyu,..., Taj, Abhinav
 - Model evaluation & Fine-tuning
   - Evaluate model for various tasks
   - Main contributors: Taj, Ketan, Xiaoyu, Tantrik 
