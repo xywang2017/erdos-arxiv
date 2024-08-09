@@ -31,16 +31,20 @@ July 1 Rough Task Division:
   - Main contributors: Xiaoyu,..., Ketan
 - Core model
   - Create RAG + NLP pipeline
-  - Main contributors: Ketan, Xiaoyu,..., Taj, Abhinav
+  - Main contributors: Ketan, GuoQing, Xiaoyu, Taj, Abhinav
 - Model evaluation & Fine-tuning
   - Evaluate model for various tasks
-  - Main contributors: Taj, Ketan, Xiaoyu, Tantrik 
+  - Main contributors: Taj, GuoQing, Ketan, Xiaoyu, Tantrik 
 - Deployment
   - web deployment
-  - Main contributors: ..., Taj, Ketan, Xiaoyu
+  - Main contributors:Tantrik, Taj, Ketan, Xiaoyu
 - Exploratory Tasks
   - multimodel NLP
   - customized transformer architecture (poor man's version of chatGPT)
   - create a Transformer-GAN for plagarism detection.
   - Main contributors: ..., Xiaoyu, ..., Taj, Ketan, Tantrik
+
+ 
+  - Performance Evaluation Metrics:
+  - BLEU score: Tantrik, Taj
 
