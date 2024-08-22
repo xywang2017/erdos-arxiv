@@ -8,7 +8,7 @@ import json
 
 import google.generativeai as genai
 
-genai.configure(api_key="AIzaSyDpCp8WUjjaE3mJsOXcdxdlAihxuGjJf7E")
+genai.configure(api_key="")
 
 # ------------------------------------- Get documents ------------------------------------- #
 documents = [
