@@ -1,61 +1,83 @@
-import os 
-import torch 
-import numpy as np
-from sentence_transformers import SentenceTransformer
 import chromadb 
-import requests
-import json
+from langchain_community.document_loaders import ArxivLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 import google.generativeai as genai
 
-genai.configure(api_key="")
+genai.configure(api_key="AIzaSyDpCp8WUjjaE3mJsOXcdxdlAihxuGjJf7E")
 
-# ------------------------------------- Get documents ------------------------------------- #
-documents = [
-    "Take a leisurely walk in the park and enjoy the fresh air.",
-    "Visit a local museum and discover something new.",
-    "Attend a live music concert and feel the rhythm.",
-    "Go for a hike and admire the natural scenery.",
-    "Have a picnic with friends and share some laughs.",
-    "Explore a new cuisine by dining at an ethnic restaurant.",
-    "Take a yoga class and stretch your body and mind.",
-    "Join a local sports league and enjoy some friendly competition.",
-    "Attend a workshop or lecture on a topic you're interested in.",
-    "Visit an amusement park and ride the roller coasters."
-]
+_MAX_DOCS = 100
+_CHUNK_SIZE = 5120
+_CHUNK_OVERLAP = 20
 
-# above is a placeholder, need to implement proper documents 
+# ------------------------------------- Get documents and vector database------------------------------------- #
+user_input = input("Tell me a topic you are interested in \n")
 
-# ------------------------------------- Document embeddings using SentenceTransformer ------------------------------------- #
+print("Building a database of the topic based on arXiv.org ...")
 
-# embed_model = SentenceTransformer('all-MiniLM-L6-v2')
-# doc_embeddings = embed_model.encode(documents)  # type: np.array
+# create_collection has a embedding_fn parameter. If not given, embedding_fn defaults to SentenceTransformer 
+client = chromadb.Client()
+collection = client.create_collection(name="arxiv",metadata={"hnsw:space": "cosine"})  
 
-# create a vector database of documents, code to be added 
-client = chromadb.PersistentClient('./database')
-collection = client.get_or_create_collection(name="arxiv",metadata={"hnsw:space": "cosine"})  # if not given, embedding_fn defaults to SentenceTransformer 
+# using LangChain arXivLoader to load document summaries (i.e. no pdfs)
+arxiv_docs = ArxivLoader(query=user_input, top_k_results=_MAX_DOCS, load_all_available_meta=True).get_summaries_as_docs()
 
-collection.add(documents = documents, ids = [f"{j}" for j in range(len(documents))])
+_TOTAL_DOCS = len(arxiv_docs)
 
-# ------------------------------------- Document retrieval ------------------------------------- #
+page_content, metadata, doc_identifiers = [], [], []
+for doc in arxiv_docs:
+    arxiv_specifier = doc.metadata['Entry ID'].split('/')[-1]
+    arxiv_title = doc.metadata['Title']
+    arxiv_authors = doc.metadata['Authors']
 
-user_input = "recommend something to do for a nature-loving person"
+    text_splitter = RecursiveCharacterTextSplitter(
+                    chunk_size=_CHUNK_SIZE,
+                    chunk_overlap=_CHUNK_OVERLAP)
+    texts = text_splitter.create_documents(texts=[doc.page_content],metadatas=[doc.metadata])
+    
+    for j in range(len(texts)):
+        page_content.append(texts[j].page_content)
+        metadata.append({'arxiv_specifier':arxiv_specifier,'Title':arxiv_title,'Authors':arxiv_authors})
+        doc_identifiers.append(str(hash(arxiv_specifier + f' {j}')))
 
-query_rag = collection.query(query_texts=[user_input],n_results = 5)
-                  # where={"metadata_field": "is_equal_to_this"},
-                  # where_document={"$contains":"search_string"})
+collection.add(documents=page_content,ids=doc_identifiers,metadatas=metadata)
 
-prompt = """
-    You are a question-answer bot that provides answers in the scientific domain. 
-    Given the provided context: {rag_context}
-    Answer user's question: {user_input} \n 
-"""
-if query_rag: 
-    prompt_rag = prompt.format(rag_context=query_rag,user_input=user_input)
-else: 
-    prompt_rag = prompt.format(rag_context=" ",user_input=user_input)
 
-# ------------------------------------- Connecting to Commerical ChatBot ------------------------------------- #
-model = genai.GenerativeModel(model_name="gemini-1.5-pro") 
-response = model.generate_content([prompt_rag]) 
-print(response.text) 
+print(f"Retrieved and encoded {_TOTAL_DOCS} documents.") 
+# print("Here are a few examples of retrieved papers:")
+# tmp = collection.query(query_texts=[user_input],n_results = min(_TOTAL_DOCS,5))
+# for j in range(len(tmp['metadatas'][0])):
+#     print(tmp['metadatas'][0][j])
+print("\n")
+
+# ------------------------------------- Question and Answer with Commerical ChatBot ------------------------------------- #
+try:
+    model = genai.GenerativeModel(model_name="gemini-1.5-pro");
+    while True:
+        query = input(f'What do you want to know regarding "{user_input}"?\n')
+        query_rag = collection.query(query_texts=[query],n_results = min(5,_TOTAL_DOCS))
+        print("Here are the papers retrieved based on your question:")
+        for j in range(len(query_rag['metadatas'][0])):
+            print(query_rag['metadatas'][0][j])
+        print("\n")
+
+        prompt = """
+            You are a question-answer bot that provides answers in the scientific domain. 
+            Given the provided context: {rag_context}
+            Answer user's question "{query}" on the topic of {user_input}. 
+            When answering the question, try to make use of arxiv_specifiers provided in the context.\n 
+        """
+
+        rag_context = []
+        for j in range(len(query_rag['metadatas'][0])): 
+            context = query_rag['metadatas'][0][j]
+            context['documents'] =  query_rag['documents'][0][j]
+            rag_context.append(context)
+
+        prompt_rag = prompt.format(rag_context=rag_context,user_input=user_input,query=query)
+
+        response = model.generate_content([prompt_rag]);
+
+        print(response.text) 
+except KeyboardInterrupt:
+    pass
