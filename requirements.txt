@@ -3,5 +3,5 @@ numpy
 langchain
 langchain_community
 sentence_transformers
-Chroma
+chromadb
 google
