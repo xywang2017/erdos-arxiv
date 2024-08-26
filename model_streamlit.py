@@ -11,15 +11,13 @@ import google.generativeai as genai
 #     for key in st.session_state.keys():
 #         del st.session_state[key]
 
-st.sidebar.title("arXiv ChatBot")
+st.sidebar.title("arXiv.org ChatBot")
 # google_api_key = st.sidebar.text_input(label="Enter your google API key:",type='password')
 google_api_key = "AIzaSyDpCp8WUjjaE3mJsOXcdxdlAihxuGjJf7E"
 genai.configure(api_key=google_api_key)
 
 if google_api_key:
     _MAX_DOCS = 100
-    _CHUNK_SIZE = 5120
-    _CHUNK_OVERLAP = 20
 
     model_sbert = SentenceTransformer("all-MiniLM-L6-v2")
     # ------------------------------------- Get documents and vector database------------------------------------- #
@@ -35,8 +33,6 @@ if google_api_key:
 
         # using LangChain arXivLoader to load document summaries (i.e. no pdfs)
         arxiv_docs = ArxivLoader(query=user_input, top_k_results=_MAX_DOCS, load_all_available_meta=True).get_summaries_as_docs()
-
-        _TOTAL_DOCS = len(arxiv_docs)
 
         page_content, metadata, doc_identifiers = [], [], []
         for doc in arxiv_docs:
