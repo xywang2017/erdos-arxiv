@@ -12,7 +12,8 @@ import google.generativeai as genai
 #         del st.session_state[key]
 
 st.sidebar.title("arXiv ChatBot")
-google_api_key = st.sidebar.text_input(label="Enter your google API key:",type='password')
+# google_api_key = st.sidebar.text_input(label="Enter your google API key:",type='password')
+google_api_key = "AIzaSyDpCp8WUjjaE3mJsOXcdxdlAihxuGjJf7E"
 genai.configure(api_key=google_api_key)
 
 if google_api_key:
