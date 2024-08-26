@@ -5,6 +5,7 @@ chainlit
 langchain
 langchain-openai
 langchain-community
+sqlite3>=3.35.0
 chromadb
 literalai
 nbconvert
