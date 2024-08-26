@@ -1,0 +1,8 @@
+streamlit
+numpy
+langchain
+langchain_community
+sentence_transformers
+sqlite3
+chromadb
+google

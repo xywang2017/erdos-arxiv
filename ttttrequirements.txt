@@ -1,6 +1,0 @@
-langchain-community
-langchain
-sqlite3
-chromadb
-google
-streamlit
