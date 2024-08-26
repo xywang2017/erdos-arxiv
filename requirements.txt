@@ -1,6 +1,6 @@
-sentence-transformers==3.0.1
 langchain-community
 langchain
-sqlite3==2.6.0
-chromadb==0.5.4
-google.generativeai
+sqlite3
+chromadb
+google
+streamlit
