@@ -3,5 +3,6 @@ numpy
 langchain
 langchain_community
 sentence_transformers
+pysqlite3
 chromadb
 google-generativeai
