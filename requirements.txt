@@ -1,5 +1,7 @@
 streamlit
 numpy
+arxiv
+langchain
 sentence_transformers
 langchain_community
 google.generativeai
