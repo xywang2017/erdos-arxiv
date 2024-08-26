@@ -1,9 +1,7 @@
 import streamlit as st 
-
-import chromadb
-
+import numpy as np 
+from sentence_transformers import SentenceTransformer
 from langchain_community.document_loaders import ArxivLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 import google.generativeai as genai
 
@@ -17,17 +15,16 @@ st.sidebar.title("arXiv ChatBot")
 google_api_key = st.sidebar.text_input(label="Enter your google API key:",type='password')
 genai.configure(api_key=google_api_key)
 
-### create databse
-client = chromadb.Client()
-collection = client.get_or_create_collection(name="arxiv",metadata={"hnsw:space": "cosine"}) 
-
 if google_api_key:
     _MAX_DOCS = 100
     _CHUNK_SIZE = 5120
     _CHUNK_OVERLAP = 20
 
+    model_sbert = SentenceTransformer("all-MiniLM-L6-v2")
     # ------------------------------------- Get documents and vector database------------------------------------- #
     user_input = st.sidebar.text_input("Tell me a topic you are interested in",key="topic")
+
+    user_input_embedding = model_sbert.encode([user_input])
 
     if user_input:
         st.sidebar.write("Building a database of the topic based on arXiv.org ...")
@@ -45,39 +42,39 @@ if google_api_key:
             arxiv_specifier = doc.metadata['Entry ID'].split('/')[-1]
             arxiv_title = doc.metadata['Title']
             arxiv_authors = doc.metadata['Authors']
-
-            text_splitter = RecursiveCharacterTextSplitter(
-                            chunk_size=_CHUNK_SIZE,
-                            chunk_overlap=_CHUNK_OVERLAP)
-            texts = text_splitter.create_documents(texts=[doc.page_content],metadatas=[doc.metadata])
+            doc_str = 'Title: '+ arxiv_title + 'Authors: ' + arxiv_authors + 'Summary: ' + doc.page_content
             
-            for j in range(len(texts)):
-                page_content.append(texts[j].page_content)
-                metadata.append({'arxiv_specifier':arxiv_specifier,'Title':arxiv_title,'Authors':arxiv_authors})
-                doc_identifiers.append(str(hash(arxiv_specifier + f' {j}')))
+            page_content.append(doc_str)
+            metadata.append({'arxiv_specifier':arxiv_specifier,'Title':arxiv_title,'Authors':arxiv_authors})
+            doc_identifiers.append(str(hash(arxiv_specifier)))
 
-        collection.upsert(documents=page_content,ids=doc_identifiers,metadatas=metadata)
+        arxiv_embedding = model_sbert.encode(page_content)
 
+        sim_scores = model_sbert.similarity(user_input_embedding, arxiv_embedding)  # 2d [0][j]
+
+        idx_max_scores = np.argsort(np.array(sim_scores[0]))[-5:]
 
         # st.write(f"Retrieved and encoded {_TOTAL_DOCS} documents.") 
         st.sidebar.write("Here are a few examples of retrieved papers:")
-        tmp = collection.query(query_texts=[user_input],n_results = min(_TOTAL_DOCS,3))
-        for j in range(len(tmp['metadatas'][0])):
-            data = tmp['metadatas'][0][j]
+        for j in idx_max_scores:
+            data = metadata[j]
             st.sidebar.write(f"Title: {data['Title']} (arXiv:{data['arxiv_specifier']})")
 
         # ------------------------------------- Question and Answer with Commerical ChatBot ------------------------------------- #
 
         model = genai.GenerativeModel(model_name="gemini-1.5-pro")
         query = st.chat_input(f'What do you want to know regarding "{user_input}"?',key="question_answer")
+    
         if query:
-            query_rag = collection.query(query_texts=[query],n_results = min(5,_TOTAL_DOCS))
+            query_embedding = model_sbert.encode([user_input + ' ' + query])
+            sim_scores = model_sbert.similarity(query_embedding, arxiv_embedding)  # 2d [0][j]
+            idx_max_scores = np.argsort(np.array(sim_scores[0]))[-5:]
+
             st.write("Here are the papers retrieved based on your question:")
-            for j in range(len(query_rag['metadatas'][0])):
-                data = query_rag['metadatas'][0][j]
+            for j in idx_max_scores:
+                data = metadata[j]
                 st.write(f"Title: {data['Title']} (arXiv:{data['arxiv_specifier']})")
                 st.write(f"Authors: {data['Authors']}")
-                # st.write(query_rag['metadatas'][0][j])
 
             prompt = """
                 You are a question-answer bot that provides answers in the scientific domain. 
@@ -87,9 +84,8 @@ if google_api_key:
             """
 
             rag_context = []
-            for j in range(len(query_rag['metadatas'][0])): 
-                context = query_rag['metadatas'][0][j]
-                context['documents'] =  query_rag['documents'][0][j]
+            for j in idx_max_scores: 
+                context = page_content[j]
                 rag_context.append(context)
 
             prompt_rag = prompt.format(rag_context=rag_context,user_input=user_input,query=query)
