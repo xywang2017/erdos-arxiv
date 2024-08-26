@@ -3,6 +3,5 @@ numpy
 langchain
 langchain_community
 sentence_transformers
-sqlite
 Chroma
 google
