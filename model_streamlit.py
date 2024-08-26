@@ -57,9 +57,12 @@ if google_api_key:
 
         # st.write(f"Retrieved and encoded {_TOTAL_DOCS} documents.") 
         st.sidebar.write("Here are a few examples of retrieved papers:")
+        cnt = 1
         for j in idx_max_scores:
             data = metadata[j]
-            st.sidebar.write(f"Title: {data['Title']} (arXiv:{data['arxiv_specifier']})")
+            st.sidebar.write(f"[{cnt}] Title: {data['Title']} (arXiv:{data['arxiv_specifier']})")
+            cnt = cnt + 1
+
 
         # ------------------------------------- Question and Answer with Commerical ChatBot ------------------------------------- #
 
@@ -72,10 +75,12 @@ if google_api_key:
             idx_max_scores = np.argsort(np.array(sim_scores[0]))[-5:]
 
             st.write("Here are the papers retrieved based on your question:")
+            cnt = 1
             for j in idx_max_scores:
                 data = metadata[j]
-                st.write(f"Title: {data['Title']} (arXiv:{data['arxiv_specifier']})")
+                st.write(f"[{cnt}] Title: {data['Title']} (arXiv:{data['arxiv_specifier']})")
                 st.write(f"Authors: {data['Authors']}")
+                cnt = cnt + 1
 
             prompt = """
                 You are a question-answer bot that provides answers in the scientific domain. 
