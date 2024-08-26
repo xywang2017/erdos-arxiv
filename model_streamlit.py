@@ -85,7 +85,7 @@ if google_api_key:
 
             rag_context = []
             for j in idx_max_scores: 
-                context = page_content[j]
+                context = metadata[j]['arxiv_specifier'] + ': ' + page_content[j]
                 rag_context.append(context)
 
             prompt_rag = prompt.format(rag_context=rag_context,user_input=user_input,query=query)
