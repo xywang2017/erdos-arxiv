@@ -1,14 +1,6 @@
-sentence-transformers==2.2.2
-torch==2.2.1
-python-dotenv==1.0.0
-chainlit
-langchain
-langchain-openai
+sentence-transformers==3.0.1
 langchain-community
+langchain
 sqlite3==2.6.0
 chromadb==0.5.4
-literalai
-nbconvert
-arxiv
-pymupdf
-langchain-google-genai
+google.generativeai
