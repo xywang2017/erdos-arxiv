@@ -70,7 +70,7 @@ if google_api_key:
             sim_scores = model_sbert.similarity(query_embedding, arxiv_embedding)  # 2d [0][j]
             idx_max_scores = np.argsort(np.array(sim_scores[0]))[-5:]
 
-            st.write("Here are the papers retrieved based on your question:")
+            st.write(f'Here are the papers retrieved based on your question "{query}":')
             cnt = 1
             for j in idx_max_scores:
                 data = metadata[j]
