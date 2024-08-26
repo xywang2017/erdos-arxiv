@@ -4,4 +4,4 @@ langchain
 langchain_community
 sentence_transformers
 chromadb
-google
+google-generativeai
