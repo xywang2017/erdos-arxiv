@@ -14,7 +14,7 @@ import google.generativeai as genai
 st.sidebar.title("arXiv.org ChatBot")
 url = "https://aistudio.google.com/app/apikey"
 st.sidebar.write(f"[Click here to get an API key if you don't have one]({url})")
-st.sidebar.write("Select Create credentials -> API Key -> Done!")
+st.sidebar.write('Click "Create API key" -> Done!')
 google_api_key = st.sidebar.text_input(label="Enter your google API key:",type='password')
 genai.configure(api_key=google_api_key)
 
