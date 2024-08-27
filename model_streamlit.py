@@ -53,7 +53,7 @@ if google_api_key:
 
             sim_scores = model_sbert.similarity(user_input_embedding, arxiv_embedding)  # 2d [0][j]
 
-            idx_random_scores = np.random.shuffle(np.arange(0,len(sim_scores[0])))[:5]
+            idx_random_scores = np.random.choice(np.arange(0,len(sim_scores[0])),5)
 
             # st.write(f"Retrieved and encoded {_TOTAL_DOCS} documents.") 
             st.sidebar.write("Here are a few examples (5 of 100) of retrieved papers:")
