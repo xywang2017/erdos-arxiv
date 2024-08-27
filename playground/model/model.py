@@ -4,7 +4,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 import google.generativeai as genai
 
-genai.configure(api_key="AIzaSyDpCp8WUjjaE3mJsOXcdxdlAihxuGjJf7E")
+genai.configure(api_key="")
 
 _MAX_DOCS = 100
 _CHUNK_SIZE = 5120
