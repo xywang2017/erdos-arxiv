@@ -28,7 +28,7 @@ if google_api_key:
     
     if user_input:
         user_input_embedding = model_sbert.encode([user_input])
-        st.sidebar.write(f'Building a database of topic "{user_input}" from arXiv.org ...')
+        st.sidebar.write(f'Building a database on the topic "{user_input}" from arXiv.org ...')
 
         # create_collection has a embedding_fn parameter. If not given, embedding_fn defaults to SentenceTransformer 
         
