@@ -12,6 +12,7 @@ import google.generativeai as genai
 #         del st.session_state[key]
 
 st.sidebar.title("arXiv.org ChatBot")
+st.sidebar.write('A RAG-based model to query any paper on arXiv')
 url = "https://aistudio.google.com/app/apikey"
 st.sidebar.write(f"[Click here to get an API key if you don't have one]({url})")
 st.sidebar.write('Click "Create API key" -> Done!')
@@ -79,7 +80,7 @@ if google_api_key:
                 for j in reversed(idx_max_scores):
                     data = metadata[j]
                     st.write(f"[{cnt}] {data['Authors']}, *{data['Title']}*, arXiv:{data['arxiv_specifier']}")
-                    st.write(f"Similarity score (0-1): {sim_scores[0][j]:.2f}")
+                    st.write(f"Paper Relevance Score (0-1): {sim_scores[0][j]:.2f}")
                     cnt = cnt + 1
 
                 prompt = """
