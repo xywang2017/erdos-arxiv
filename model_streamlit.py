@@ -58,7 +58,7 @@ if google_api_key:
             cnt = 1
             for j in idx_max_scores:
                 data = metadata[j]
-                st.sidebar.write(f"[{cnt}] **{data['Title']}**, arXiv:{data['arxiv_specifier']}")
+                st.sidebar.write(f"[{cnt}] *{data['Title']}*, arXiv:{data['arxiv_specifier']}")
                 cnt = cnt + 1
 
 
@@ -76,8 +76,8 @@ if google_api_key:
                 cnt = 1
                 for j in idx_max_scores:
                     data = metadata[j]
-                    st.write(f"[{cnt}] **{data['Title']}**, arXiv:{data['arxiv_specifier']}")
-                    st.write(f"Authors: {data['Authors']}  [Query score: {sim_scores[0][j]}]")
+                    st.write(f"[{cnt}] *{data['Title']}*, arXiv:{data['arxiv_specifier']}")
+                    st.write(f"Authors: {data['Authors']}  [Match score (0-1): {sim_scores[0][j]:.2f}]")
                     cnt = cnt + 1
 
                 prompt = """
