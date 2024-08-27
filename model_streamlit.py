@@ -22,10 +22,9 @@ if google_api_key:
     model_sbert = SentenceTransformer("all-MiniLM-L6-v2")
     # ------------------------------------- Get documents and vector database------------------------------------- #
     user_input = st.sidebar.text_input("Tell me a topic you are interested in",key="topic")
-
-    user_input_embedding = model_sbert.encode([user_input])
-
+    
     if user_input:
+        user_input_embedding = model_sbert.encode([user_input])
         st.sidebar.write("Building a database of the topic based on arXiv.org ...")
 
         # create_collection has a embedding_fn parameter. If not given, embedding_fn defaults to SentenceTransformer 
