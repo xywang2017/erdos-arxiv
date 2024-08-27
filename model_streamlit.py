@@ -25,7 +25,7 @@ if google_api_key:
     
     if user_input:
         user_input_embedding = model_sbert.encode([user_input])
-        st.sidebar.write('Building a database of topic "{user input}" from arXiv.org ...')
+        st.sidebar.write(f'Building a database of topic "{user_input}" from arXiv.org ...')
 
         # create_collection has a embedding_fn parameter. If not given, embedding_fn defaults to SentenceTransformer 
         
@@ -34,7 +34,7 @@ if google_api_key:
         arxiv_docs = ArxivLoader(query=f'{user_input}', top_k_results=_MAX_DOCS, load_all_available_meta=True).get_summaries_as_docs()
 
         if len(arxiv_docs) == 0: 
-            st.sidebar.write(f'No documents matching {user_input} is found, try again!')
+            st.sidebar.write('No documents matching the topic is found, try again!')
         else:
             page_content, metadata, doc_identifiers = [], [], []
             for doc in arxiv_docs:
