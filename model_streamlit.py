@@ -31,7 +31,7 @@ if google_api_key:
         
 
         # using LangChain arXivLoader to load document summaries (i.e. no pdfs)
-        arxiv_docs = ArxivLoader(query=f'{user_input}', top_k_results=_MAX_DOCS, load_all_available_meta=True).get_summaries_as_docs()
+        arxiv_docs = ArxivLoader(query=f'"{user_input}"', top_k_results=_MAX_DOCS, load_all_available_meta=True).get_summaries_as_docs()
 
         if len(arxiv_docs) == 0: 
             st.sidebar.write('No documents matching the topic is found, try again!')
