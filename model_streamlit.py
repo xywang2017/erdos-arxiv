@@ -16,7 +16,6 @@ url = "https://console.cloud.google.com/apis/credentials?project=gen-lang-client
 st.sidebar.write(f"[Click here to get an API key if you don't have one]({url})")
 st.sidebar.write("Select Create credentials -> API Key -> Done!")
 google_api_key = st.sidebar.text_input(label="Enter your google API key:",type='password')
-# google_api_key = ""
 genai.configure(api_key=google_api_key)
 
 if google_api_key:
@@ -54,12 +53,12 @@ if google_api_key:
 
             sim_scores = model_sbert.similarity(user_input_embedding, arxiv_embedding)  # 2d [0][j]
 
-            idx_max_scores = np.argsort(np.array(sim_scores[0]))[-5:]
+            idx_random_scores = np.random.shuffle(np.arange(0,len(sim_scores[0])))[:5]
 
             # st.write(f"Retrieved and encoded {_TOTAL_DOCS} documents.") 
-            st.sidebar.write("Here are a few examples of retrieved papers:")
+            st.sidebar.write("Here are a few examples (5 of 100) of retrieved papers:")
             cnt = 1
-            for j in idx_max_scores:
+            for j in idx_random_scores:
                 data = metadata[j]
                 st.sidebar.write(f"[{cnt}] *{data['Title']}*, arXiv:{data['arxiv_specifier']}")
                 cnt = cnt + 1
@@ -77,10 +76,10 @@ if google_api_key:
 
                 st.write(f'Here are the papers retrieved based on your question "{query}":')
                 cnt = 1
-                for j in idx_max_scores:
+                for j in reversed(idx_max_scores):
                     data = metadata[j]
-                    st.write(f"[{cnt}] *{data['Title']}*, arXiv:{data['arxiv_specifier']}")
-                    st.write(f"Authors: {data['Authors']}  [Match score (0-1): {sim_scores[0][j]:.2f}]")
+                    st.write(f"[{cnt}] {data['Authors']}, *{data['Title']}*, arXiv:{data['arxiv_specifier']}")
+                    st.write(f"Similarity score (0-1): {sim_scores[0][j]:.2f}")
                     cnt = cnt + 1
 
                 prompt = """
