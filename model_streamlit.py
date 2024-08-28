@@ -5,12 +5,6 @@ from langchain_community.document_loaders import ArxivLoader
 
 import google.generativeai as genai
 
-
-# ctrl_button = st.button('Reset',type='primary')
-# if ctrl_button:
-#     for key in st.session_state.keys():
-#         del st.session_state[key]
-
 st.sidebar.title("arXiv.org ChatBot")
 st.sidebar.write('A RAG-based chatbot to query any paper on arXiv. The chatbot uses Google Gemini LLM under the hood and was develop as part of the Erdos Institute Deep Learning Bootcamp. The Team includes:Tajudeen Mamadou, \\ Tantrik Mukherji, Ketan Sand \\ Xiaoyu Wang \\ Guoqing Zhang')
 url = "https://aistudio.google.com/app/apikey"
@@ -23,15 +17,14 @@ if google_api_key:
     _MAX_DOCS = 100
 
     model_sbert = SentenceTransformer("all-MiniLM-L6-v2")
+
     # ------------------------------------- Get documents and vector database------------------------------------- #
+
     user_input = st.sidebar.text_input("Tell me a topic you are interested in",key="topic")
     
     if user_input:
         user_input_embedding = model_sbert.encode([user_input])
         st.sidebar.write(f'Building a database on the topic "{user_input}" from arXiv.org ...')
-
-        # create_collection has a embedding_fn parameter. If not given, embedding_fn defaults to SentenceTransformer 
-        
 
         # using LangChain arXivLoader to load document summaries (i.e. no pdfs)
         arxiv_docs = ArxivLoader(query=f'"{user_input}"', top_k_results=_MAX_DOCS, load_all_available_meta=True).get_summaries_as_docs()
@@ -56,14 +49,12 @@ if google_api_key:
 
             idx_random_scores = np.random.choice(np.arange(0,len(sim_scores[0])),5)
 
-            # st.write(f"Retrieved and encoded {_TOTAL_DOCS} documents.") 
             st.sidebar.write("Here are a few examples (5 of 100) of retrieved papers:")
             cnt = 1
             for j in idx_random_scores:
                 data = metadata[j]
                 st.sidebar.write(f"[{cnt}] *{data['Title']}*, arXiv:{data['arxiv_specifier']} (relevance score: {sim_scores[0][j]:.2f})")
                 cnt = cnt + 1
-
 
             # ------------------------------------- Question and Answer with Commerical ChatBot ------------------------------------- #
 
@@ -97,6 +88,6 @@ if google_api_key:
 
                 prompt_rag = prompt.format(rag_context=rag_context,user_input=user_input,query=query)
 
-                response = model.generate_content([prompt_rag]);
+                response = model.generate_content([prompt_rag])
 
                 st.write(response.text) 
