@@ -6,7 +6,7 @@ from langchain_community.document_loaders import ArxivLoader
 import google.generativeai as genai
 
 st.sidebar.title("arXiv.org ChatBot")
-st.sidebar.write('A RAG-based chatbot to query any paper on arXiv. The chatbot uses Google Gemini LLM under the hood and was develop as part of the Erdos Institute Deep Learning Bootcamp. The Team includes:Tajudeen Mamadou, \\ Tantrik Mukherji, Ketan Sand \\ Xiaoyu Wang \\ Guoqing Zhang')
+st.sidebar.write('A RAG-based chatbot to query any paper on arXiv. The chatbot uses Google Gemini LLM under the hood and was develop as part of the Erdos Institute Deep Learning Bootcamp. The Team includes: Tantrik Mukherji, Ketan Sand, Xiaoyu Wang, Tajudeen Mamadou Yacoubou, Guoqing Zhang')
 url = "https://aistudio.google.com/app/apikey"
 st.sidebar.write(f"[Click here to get an API key if you don't have one]({url})")
 st.sidebar.write('Click "Create API key" -> Done!')
