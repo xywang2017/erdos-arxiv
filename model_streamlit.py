@@ -61,7 +61,7 @@ if google_api_key:
             cnt = 1
             for j in idx_random_scores:
                 data = metadata[j]
-                st.sidebar.write(f"[{cnt}] *{data['Title']}*, arXiv:{data['arxiv_specifier']}")
+                st.sidebar.write(f"[{cnt}] *{data['Title']}*, arXiv:{data['arxiv_specifier']} (relevance score: {sim_scores[0][j]:.2f})")
                 cnt = cnt + 1
 
 
