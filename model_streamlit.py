@@ -12,7 +12,7 @@ import google.generativeai as genai
 #         del st.session_state[key]
 
 st.sidebar.title("arXiv.org ChatBot")
-st.sidebar.write('A RAG-based model to query any paper on arXiv')
+st.sidebar.write('A RAG-based chatbot to query any paper on arXiv. The chatbot uses Google Gemini LLM under the hood and was develop as part of the Erdos Institute Deep Learning Bootcamp. The Team includes:Tajudeen Mamadou, \\ Tantrik Mukherji, Ketan Sand \\ Xiaoyu Wang \\ Guoqing Zhang')
 url = "https://aistudio.google.com/app/apikey"
 st.sidebar.write(f"[Click here to get an API key if you don't have one]({url})")
 st.sidebar.write('Click "Create API key" -> Done!')
