@@ -3,8 +3,8 @@
 arXiv Chatbot
 Erdos Deep Learning Boot Camp (June 7 - Aug 29 2024)
 
-**Team:** Tantrik Mukerji, Ketan Sand, Xiaoyu Wang, Tajudeen Mamadou Yacoubou, Guoqing Zhang
-**Github:** https://github.com/xywang2017/erdos-arxiv 
+**Team:** Tantrik Mukerji, Ketan Sand, Xiaoyu Wang, Tajudeen Mamadou Yacoubou, Guoqing Zhang\
+**Github:** https://github.com/xywang2017/erdos-arxiv\
 **App:** https://erdos-arxiv-chatbot.streamlit.app/ 
  
 ![alt text](Presentation/Images/ArXiv_Image.png "Logo Title Text 1")
