@@ -6,8 +6,7 @@ Erdos Deep Learning Boot Camp (June 7 - Aug 29 2024)
 Team: Tantrik Mukerji, Ketan Sand, Xiaoyu Wang, Tajudeen Mamadou Yacoubou, Guoqing Zhang
 Github: https://github.com/xywang2017/erdos-arxiv 
 App: https://erdos-arxiv-chatbot.streamlit.app/ 
-
-Inline-style: 
+ 
 ![alt text](Presentation/Images/ArXiv_Image.png "Logo Title Text 1")
 
 arXiv.org is the largest open database available containing nearly 2.4 million research papers. Current methods to search the ArXiv involve key-word matching which are considered out-dated by today's standards. A large language model (LLM) having access to such a dataset will make it unprecedented in generating updated, relevant, and, more importantly, precise information with citable sources. In such situations, RAG pipelines can be used to provide context, in simpler terms, RAG is a technique used to enhance the accuracy and reliability of generative AI models by using information from external sources. 
