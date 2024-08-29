@@ -1,50 +1,34 @@
 # erdos-arxiv
 
-arXiv chatbot, Erdos Institute Deep Learning Boot Camp
+arXiv Chatbot
+Erdos Deep Learning Boot Camp (June 7 - Aug 29 2024)
 
-Standard search methods on arXiv.org are outdated, and based on keyword matching. ChatGPT appears to do better, with a few examples shown in the pictures below. 
+Team: Tantrik Mukerji, Ketan Sand, Xiaoyu Wang, Tajudeen Mamadou Yacoubou, Guoqing Zhang
+Github: https://github.com/xywang2017/erdos-arxiv 
+App: https://erdos-arxiv-chatbot.streamlit.app/ 
 
-In this project proposal, We would do something similar to chatGPT, but better in the academic domain by incorporating retrieval augmented generation (RAG). Specifically we are interested to address questions like: 
+Inline-style: 
+![alt text](Presentation/Images/ArXiv_Image.png "Logo Title Text 1")
 
-- I want to research XYZ, could you provide a summary of the research results in the past month? 
-- Are there common topics both domain A and domain B are working on, but researchers are too lazy to spot it (by hopping over to a different domain and suffering from a different set of jargons)? 
-- Could you provide a summary of the research results in a given paper arXiv:0123.45678?
-- Can you give me a select of recent 5 papers on topic XXX, and give a summary of their main results?
-- Possible multimodal NLP task combining text and figures
+arXiv.org is the largest open database available containing nearly 2.4 million research papers. Current methods to search the ArXiv involve key-word matching which are considered out-dated by today's standards. A large language model (LLM) having access to such a dataset will make it unprecedented in generating updated, relevant, and, more importantly, precise information with citable sources. In such situations, RAG pipelines can be used to provide context, in simpler terms, RAG is a technique used to enhance the accuracy and reliability of generative AI models by using information from external sources. 
 
-Project skills: web scraping, NLP, NLP fine tuning methods such as RAG, model evaluation metrics, and deployment
+This is exactly what we have done in this project. We have refined the capabilities of Google’s Gemini 1.5 pro LLM by building a customized RAG pipeline that has access to the entire arXiv database. We then deployed the entire package into an app that mimics a chatbot to make the experience user-friendly.
 
-How to evaluate model performance? 
-- Is generated summary similar to the actual abstract?  
-— Plagiarism detection via GAN
 
-Stakeholders
-- arXiv.org
-- General online archiving databases (e.g. Google scholar)
-- Field-based online archives
-- Professional Associations
+**Stakeholders** - Academics, Universities, All companies R&D department ranging from Medicine to Computer Science and even economics.
 
-July 1 Rough Task Division: 
-- Data preprocessing
-  - Getting arXiv metadata and paper content (text, figure) from the past year, create a RAG vector database (word embedding)
-  - For a figure,a separate task to translate it to a texual description is needed to create a word embedding
-  - Main contributors: Xiaoyu,..., Ketan
-- Core model
-  - Create RAG + NLP pipeline
-  - Main contributors: Ketan, GuoQing, Xiaoyu, Taj, Abhinav
-- Model evaluation & Fine-tuning
-  - Evaluate model for various tasks
-  - Main contributors: Taj, GuoQing, Ketan, Xiaoyu, Tantrik 
-- Deployment
-  - web deployment
-  - Main contributors:Tantrik, Taj, Ketan, Xiaoyu
-- Exploratory Tasks
-  - multimodel NLP
-  - customized transformer architecture (poor man's version of chatGPT)
-  - create a Transformer-GAN for plagarism detection.
-  - Main contributors: ..., Xiaoyu, ..., Taj, Ketan, Tantrik
 
- 
-  - Performance Evaluation Metrics:
-  - BLEU score: Tantrik, Taj
+
+
+
+
+
+
+
+
+
+
+
+
+
 
