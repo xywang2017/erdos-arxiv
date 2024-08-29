@@ -1,0 +1,42 @@
+Here are the papers retrieved based on your question "What are the models for the source?":
+
+[1] Shriharsh P. Tendulkar, Armando Gil de Paz, Aida Yu. Kirichenko, Jason W. T. Hessels, Mohit Bhardwaj, Fernando Ávila, Cees Bassa, Pragya Chawla, Emmanuel Fonseca, Victoria M. Kaspi, Aard Keimpema, Franz Kirsten, T. Joseph W. Lazio, Benito Marcote, Kiyoshi Masui, Kenzie Nimmo, Zsolt Paragi, Mubdi Rahman, Daniel Reverte Payá, Paul Scholz, Ingrid Stairs, The 60 pc Environment of FRB 20180916B, arXiv:2011.03257v3
+
+Paper Relevance Score (0-1): 0.51
+
+[2] Ketan R. Sand, Jakob Faber, Vishal Gajjar, Daniele Michilli, Bridget C. Andersen, Bhal Chandra Joshi, Sanjay Kudale, Maura Pilia, Bryan Brzycki, Tomas Cassanelli, Steve Croft, Biprateep Dey, Hoang John, Calvin Leung, Ryan Mckinven, Cherry Ng, Aaron B. Pearlman, Emily Petroff, Danny C. Price, Andrew Siemion, Kendrick Smith, Shriharsh P. Tendulkar, Multiband Detection of Repeating FRB 20180916B, arXiv:2111.02382v2
+
+Paper Relevance Score (0-1): 0.41
+
+[3] J. I. Katz, Testing Models of Periodically Modulated FRB Activity, arXiv:2012.15354v3
+
+Paper Relevance Score (0-1): 0.40
+
+[4] B. Marcote, F. Kirsten, J. W. T. Hessels, K. Nimmo, Z. Paragi, PRECISE localizations of repeating Fast Radio Bursts, arXiv:2202.11644v3
+
+Paper Relevance Score (0-1): 0.38
+
+[5] Hao-Yan Chen, Wei-Min Gu, Mouyuan Sun, Tong Liu, Tuan Yi, Reconciling the 16.35-day period of FRB 20180916B with jet precession, arXiv:2108.08982v1
+
+Paper Relevance Score (0-1): 0.38
+
+Based on the provided abstracts, here are some proposed models for FRB 20180916B, particularly focusing on its 16.35-day periodicity:
+
+1. Precession Models:
+
+    Disk-driven jet precession (2108.08982v1): This model suggests the FRB's periodicity arises from a precessing jet powered by an accretion disk. However, it requires an extremely low viscosity parameter (α≲10⁻⁸), making it implausible.
+    Tidal force-driven jet precession (2108.08982v1): This model proposes a compact binary system comprising a neutron star/black hole and a Roche-lobe filling white dwarf. The tidal forces from the white dwarf on the accretion disk cause the jet to precess. This model can accommodate the 16.35-day period and predicts periods ranging from days to hundreds of days depending on the binary parameters.
+
+2. Other Models:
+
+    Narrow beam within a precessing cone (2012.15354v3): This model suggests the periodic modulation could be due to a narrow emission beam from the source rotating within a larger precession cone, similar to what's observed in X-ray binaries.
+    Magnetar (2011.03257v3): While not directly addressing the periodicity, this study analyzes the environment of FRB 20180916B. They find that its projected distance from a likely birthplace is more consistent with the ages of high-mass X-ray binaries and gamma-ray binaries than with the shorter lifespans of magnetars.
+
+Important Considerations:
+
+    Universality of coherent emission (2012.15354v3): The detection of FRB 200428 from a seemingly isolated neutron star suggests that the mechanisms for producing coherent emission could be present in various environments.
+    Multiband observations (2111.02382v2): Studying FRBs across multiple wavelengths provides crucial information about their energy distributions, emission mechanisms, and potential changes over time.
+
+Conclusion:
+
+The exact nature and source of FRB 20180916B are still under investigation. While the tidal force-driven jet precession model seems promising for explaining its periodicity, more observations and research are needed to confirm any model definitively.
