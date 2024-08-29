@@ -35,7 +35,7 @@ RAG context generation and Prompt construction - The metadata and content from t
 - The final generated response is contextualized with the retrieved documents, providing accurate answers while also citing relevant sources. A generic language model clearly would not have been able to achieve this, therefore demonstrating the success of our pipeline.
 - The pipeline is deployed as a web app at https://erdos-arxiv-chatbot.streamlit.app/, which has a clean user interface, and instructions on how to use it.
 
-
+![alt text 2](Presentation/Images/demo.png "Logo Title Text 2")
 
 
 
