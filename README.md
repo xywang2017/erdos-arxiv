@@ -12,12 +12,11 @@ arXiv.org is the largest open database available containing nearly 2.4 million r
 
 This is exactly what we have done in this project. We have refined the capabilities of Google’s Gemini 1.5 pro LLM by building a customized RAG pipeline that has access to the entire arXiv database. We then deployed the entire package into an app that mimics a chatbot to make the experience user-friendly.
 
-![alt text](Presentation/Images/rag_llm_flowchart.png "Logo Title Text 1")
-
-
 **Stakeholders** - Academics, Universities, All companies R&D department ranging from Medicine to Computer Science and even economics.
 
 **Pipeline Description**
+
+![alt text](Presentation/Images/rag_llm_flowchart.png "Logo Title Text 1")
 
 - **Embedding Model**: Load a pre-trained sentence embedding model (all-MiniLM-L6-v2) from SentenceTransformers, to encode both user inputs and documents. In contrast to traditional keyword-based queries, the model encodes the semantics for similarity comparisons.
 - **User Input**: Asks a user for a topic of interest  or keywords to look for.
